@@ -1,4 +1,4 @@
-import 'package:epubx/src/schema/opf/epub_manifest.dart';
+import '../schema/opf/epub_manifest.dart';
 import 'package:xml/src/xml/builder.dart' show XmlBuilder;
 
 class EpubManifestWriter {

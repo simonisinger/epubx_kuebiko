@@ -1,6 +1,6 @@
-# epubx
+# epubx_kuebiko
 
-It package is [dart-epub](https://github.com/orthros/dart-epub) fork
+This package is [epubx](https://github.com/ScerIO/epubx.dart) fork
 
 [Flutter UI implementation](https://pub.dev/packages/epub_view)
 
@@ -13,7 +13,7 @@ This does not rely on the ```dart:io``` package in any way, so it is avilable fo
 Add the package to the ```dependencies``` section of your pubspec.yaml
 ```
 dependencies:
-  epubx: any
+  epubx_kuebiko: any
 ```
 
 ## Example
