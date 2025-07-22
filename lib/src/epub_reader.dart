@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 
@@ -60,6 +61,17 @@ class EpubReader {
 
     var epubArchive = ZipDecoder().decodeBytes(loadedBytes);
 
+    return _openBook(epubArchive);
+  }
+
+  /// Open the Ebook with a stream
+  static Future<EpubBookRef> openBookStream(Stream<List<int>> byteStream, int length) async {
+    InputStream stream = await InputFileStream.asRamFile(byteStream.cast<Uint8List>(), length);
+    Archive epubArchive = ZipDecoder().decodeStream(stream);
+    return _openBook(epubArchive);
+  }
+
+  static Future<EpubBookRef> _openBook(Archive epubArchive) async {
     var bookRef = EpubBookRef(epubArchive);
     bookRef.Schema = await SchemaReader.readSchema(epubArchive);
     bookRef.Title = bookRef.Schema!.Package!.Metadata!.Titles!
