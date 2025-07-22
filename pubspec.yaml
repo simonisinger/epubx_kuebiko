@@ -1,8 +1,14 @@
-name: epubx
+name: epubx_kuebiko
 description: Epub Parser for Dart. Epub package fork. Suitable for use on the Server, the Web, or in Flutter
-homepage: https://github.com/rbcprolabs/epubx.dart
-issue_tracker: https://github.com/rbcprolabs/epubx.dart
-version: 4.0.2
+homepage: https://github.com/simonisinger/epubx_kuebiko
+issue_tracker: https://github.com/simonisinger/epubx_kuebiko/issues
+version: 4.1.0
+repository: https://github.com/simonisinger/epubx_kuebiko
+topics:
+  - epub
+  - parser
+  - ebook
+  - dart
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

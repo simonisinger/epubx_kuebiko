@@ -1,3 +1,8 @@
+## 4.1.0
+
+- Updated archive to 4.x
+- Added Stream reader
+
 ## 4.0.0
 
 - Merge all pull requests
