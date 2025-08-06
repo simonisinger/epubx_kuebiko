@@ -17,19 +17,25 @@ class BookCoverReader {
     var coverMetaItem = metaItems.firstWhereOrNull(
         (EpubMetadataMeta metaItem) =>
             metaItem.Name != null && metaItem.Name!.toLowerCase() == 'cover');
-    if (coverMetaItem == null) return null;
-    if (coverMetaItem.Content == null || coverMetaItem.Content!.isEmpty) {
-      throw Exception(
-          'Incorrect EPUB metadata: cover item content is missing.');
+
+    if (coverMetaItem != null && (coverMetaItem.Content == null || coverMetaItem.Content!.isEmpty)) {
+      throw Exception('Incorrect EPUB metadata: cover item content is missing.');
     }
 
-    var coverManifestItem = bookRef.Schema!.Package!.Manifest!.Items!
-        .firstWhereOrNull((EpubManifestItem manifestItem) =>
-            manifestItem.Id!.toLowerCase() ==
-            coverMetaItem.Content!.toLowerCase());
-    if (coverManifestItem == null) {
-      throw Exception(
-          'Incorrect EPUB manifest: item with ID = \"${coverMetaItem.Content}\" is missing.');
+    var coverManifestItem;
+    if (coverMetaItem != null) {
+      coverManifestItem = bookRef.Schema!.Package!.Manifest!.Items!
+          .firstWhereOrNull((EpubManifestItem manifestItem) =>
+          manifestItem.Id!.toLowerCase() == coverMetaItem.Content!.toLowerCase());
+      if (coverManifestItem == null) {
+        throw Exception('Incorrect EPUB manifest: item with ID = \"${coverMetaItem.Content}\" is missing.');
+      }
+    } else {
+      coverManifestItem = coverManifestItem = bookRef.Schema!.Package!.Manifest!.Items!
+          .firstWhereOrNull((EpubManifestItem manifestItem) => manifestItem.Id!.toLowerCase() == 'cover');
+      if (coverManifestItem == null) {
+        return null;
+      }
     }
 
     EpubByteContentFileRef? coverImageContentFileRef;
