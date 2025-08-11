@@ -8,7 +8,7 @@ Epub Reader and Writer for Dart inspired by [this fantastic C# Epub Reader](http
 
 This does not rely on the ```dart:io``` package in any way, so it is avilable for both desktop and web-based implementations
 
-[![pub package](https://img.shields.io/pub/v/epubx.svg)](https://pub.dartlang.org/packages/epubx)
+[![pub package](https://img.shields.io/pub/v/epubx_kuebiko.svg)](https://pub.dev/packages/epubx_kuebiko)
 ## Installing
 Add the package to the ```dependencies``` section of your pubspec.yaml
 ```
