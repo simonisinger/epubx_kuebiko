@@ -1,3 +1,8 @@
+## 4.2.0
+
+- Improved cover detection
+- Added `readCoverRaw` in `EpubBookRef` to read cover data as bytes
+
 ## 4.1.0
 
 - Updated archive to 4.x
