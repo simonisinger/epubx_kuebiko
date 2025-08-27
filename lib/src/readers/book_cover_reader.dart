@@ -39,7 +39,8 @@ class BookCoverReader {
       }
     } else {
       coverManifestItem = coverManifestItem = bookRef.Schema!.Package!.Manifest!.Items!
-          .firstWhereOrNull((EpubManifestItem manifestItem) => manifestItem.Id!.toLowerCase() == 'cover');
+          .firstWhereOrNull((EpubManifestItem manifestItem) => manifestItem.Id!.toLowerCase().contains('cover') &&
+          manifestItem.MediaType != null && manifestItem.MediaType!.startsWith('image/'));
       if (coverManifestItem == null) {
         return null;
       }
