@@ -1,3 +1,7 @@
+## 4.2.1
+
+- Further improved cover detection
+
 ## 4.2.0
 
 - Improved cover detection
