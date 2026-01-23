@@ -1,6 +1,6 @@
 library epubreadertest;
 
-import 'package:epubx/src/schema/opf/epub_metadata_date.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_date.dart';
 import 'package:test/test.dart';
 
 main() async {
@@ -8,14 +8,11 @@ main() async {
     ..Date = "a date"
     ..Event = "Some important event";
 
-  EpubMetadataDate testMetadataDate;
+  late EpubMetadataDate testMetadataDate;
   setUp(() async {
     testMetadataDate = new EpubMetadataDate()
       ..Date = reference.Date
       ..Event = reference.Event;
-  });
-  tearDown(() async {
-    testMetadataDate = null;
   });
 
   group("EpubMetadataIdentifier", () {

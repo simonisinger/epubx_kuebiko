@@ -1,6 +1,6 @@
 library epubreadertest;
 
-import 'package:epubx/src/schema/opf/epub_manifest_item.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_manifest_item.dart';
 import 'package:test/test.dart';
 
 main() async {
@@ -13,7 +13,7 @@ main() async {
     ..RequiredModules = "nodejs require()"
     ..RequiredNamespace = ".NET Namespace";
 
-  EpubManifestItem testManifestItem;
+  late EpubManifestItem testManifestItem;
   setUp(() async {
     testManifestItem = new EpubManifestItem()
       ..Fallback = reference.Fallback
@@ -23,9 +23,6 @@ main() async {
       ..MediaType = reference.MediaType
       ..RequiredModules = reference.RequiredModules
       ..RequiredNamespace = reference.RequiredNamespace;
-  });
-  tearDown(() async {
-    testManifestItem = null;
   });
 
   group("EpubManifestItem", () {

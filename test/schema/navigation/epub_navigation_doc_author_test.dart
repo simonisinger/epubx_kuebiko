@@ -2,7 +2,7 @@ library epubreadertest;
 
 import 'dart:math';
 
-import 'package:epubx/src/schema/navigation/epub_navigation_doc_author.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_doc_author.dart';
 import 'package:test/test.dart';
 
 import '../../random_data_generator.dart';
@@ -12,13 +12,10 @@ main() async {
   final EpubNavigationDocAuthor reference =
       generator.randomNavigationDocAuthor();
 
-  EpubNavigationDocAuthor testNavigationDocAuthor;
+  late EpubNavigationDocAuthor testNavigationDocAuthor;
   setUp(() async {
     testNavigationDocAuthor = new EpubNavigationDocAuthor()
-      ..Authors = List.from(reference.Authors);
-  });
-  tearDown(() async {
-    testNavigationDocAuthor = null;
+      ..Authors = List.from(reference.Authors!);
   });
 
   group("EpubNavigationDocAuthor", () {
@@ -28,7 +25,7 @@ main() async {
       });
 
       test("is false when Authors changes", () async {
-        testNavigationDocAuthor.Authors.add(generator.randomString());
+        testNavigationDocAuthor.Authors!.add(generator.randomString());
         expect(testNavigationDocAuthor, isNot(reference));
       });
     });
@@ -39,7 +36,7 @@ main() async {
       });
 
       test("is false when Authors changes", () async {
-        testNavigationDocAuthor.Authors.add(generator.randomString());
+        testNavigationDocAuthor.Authors!.add(generator.randomString());
         expect(testNavigationDocAuthor.hashCode, isNot(reference.hashCode));
       });
     });

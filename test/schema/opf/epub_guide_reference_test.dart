@@ -2,7 +2,7 @@ library epubreadertest;
 
 import 'dart:math';
 
-import 'package:epubx/src/schema/opf/epub_guide_reference.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_guide_reference.dart';
 import 'package:test/test.dart';
 
 import '../../random_data_generator.dart';
@@ -13,16 +13,13 @@ main() async {
 
   var reference = generator.randomEpubGuideReference();
 
-  EpubGuideReference testGuideReference;
+  late EpubGuideReference testGuideReference;
   setUp(() async {
     testGuideReference = new EpubGuideReference();
     testGuideReference
       ..Href = reference.Href
       ..Title = reference.Title
       ..Type = reference.Type;
-  });
-  tearDown(() async {
-    testGuideReference = null;
   });
   group("EpubGuideReference", () {
     group(".equals", () {

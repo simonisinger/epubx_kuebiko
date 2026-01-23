@@ -1,6 +1,6 @@
 library epubreadertest;
 
-import 'package:epubx/src/schema/opf/epub_metadata_identifier.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_identifier.dart';
 import 'package:test/test.dart';
 
 main() async {
@@ -9,15 +9,12 @@ main() async {
     ..Identifier = "Identifier"
     ..Scheme = "A plot";
 
-  EpubMetadataIdentifier testMetadataIdentifier;
+  late EpubMetadataIdentifier testMetadataIdentifier;
   setUp(() async {
     testMetadataIdentifier = new EpubMetadataIdentifier()
       ..Id = reference.Id
       ..Identifier = reference.Identifier
       ..Scheme = reference.Scheme;
-  });
-  tearDown(() async {
-    testMetadataIdentifier = null;
   });
 
   group("EpubMetadataIdentifier", () {

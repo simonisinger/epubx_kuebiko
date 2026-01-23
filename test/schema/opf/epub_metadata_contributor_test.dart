@@ -1,6 +1,6 @@
 library epubreadertest;
 
-import 'package:epubx/src/schema/opf/epub_metadata_contributor.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_contributor.dart';
 import 'package:test/test.dart';
 
 main() async {
@@ -9,15 +9,12 @@ main() async {
     ..FileAs = "Large"
     ..Role = "Creator";
 
-  EpubMetadataContributor testMetadataContributor;
+  late EpubMetadataContributor testMetadataContributor;
   setUp(() async {
     testMetadataContributor = new EpubMetadataContributor()
       ..Contributor = reference.Contributor
       ..FileAs = reference.FileAs
       ..Role = reference.Role;
-  });
-  tearDown(() async {
-    testMetadataContributor = null;
   });
 
   group("EpubMetadataContributor", () {

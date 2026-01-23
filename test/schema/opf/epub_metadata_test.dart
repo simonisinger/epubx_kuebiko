@@ -2,12 +2,12 @@ library epubreadertest;
 
 import 'dart:math';
 
-import 'package:epubx/src/schema/opf/epub_metadata.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_contributor.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_creator.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_date.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_identifier.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_meta.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_contributor.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_creator.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_date.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_identifier.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_meta.dart';
 import 'package:test/test.dart';
 
 import '../../random_data_generator.dart';
@@ -19,28 +19,25 @@ main() async {
       new RandomDataGenerator(new Random(123778), length);
 
   var reference = generator.randomEpubMetadata();
-  EpubMetadata testMetadata;
+  late EpubMetadata testMetadata;
   setUp(() async {
     testMetadata = new EpubMetadata()
-      ..Contributors = List.from(reference.Contributors)
-      ..Coverages = List.from(reference.Coverages)
-      ..Creators = List.from(reference.Creators)
-      ..Dates = List.from(reference.Dates)
+      ..Contributors = List.from(reference.Contributors!)
+      ..Coverages = List.from(reference.Coverages!)
+      ..Creators = List.from(reference.Creators!)
+      ..Dates = List.from(reference.Dates!)
       ..Description = reference.Description
-      ..Formats = List.from(reference.Formats)
-      ..Identifiers = List.from(reference.Identifiers)
-      ..Languages = List.from(reference.Languages)
-      ..MetaItems = List.from(reference.MetaItems)
-      ..Publishers = List.from(reference.Publishers)
-      ..Relations = List.from(reference.Relations)
-      ..Rights = List.from(reference.Rights)
-      ..Sources = List.from(reference.Sources)
-      ..Subjects = List.from(reference.Subjects)
-      ..Titles = List.from(reference.Titles)
-      ..Types = List.from(reference.Types);
-  });
-  tearDown(() async {
-    testMetadata = null;
+      ..Formats = List.from(reference.Formats!)
+      ..Identifiers = List.from(reference.Identifiers!)
+      ..Languages = List.from(reference.Languages!)
+      ..MetaItems = List.from(reference.MetaItems!)
+      ..Publishers = List.from(reference.Publishers!)
+      ..Relations = List.from(reference.Relations!)
+      ..Rights = List.from(reference.Rights!)
+      ..Sources = List.from(reference.Sources!)
+      ..Subjects = List.from(reference.Subjects!)
+      ..Titles = List.from(reference.Titles!)
+      ..Types = List.from(reference.Types!);
   });
 
   group("EpubMetadata", () {

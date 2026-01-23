@@ -1,27 +1,27 @@
 import 'dart:math' show Random;
 
-import 'package:epubx/epub.dart';
-import 'package:epubx/src/schema/navigation/epub_metadata.dart';
-import 'package:epubx/src/schema/navigation/epub_navigation_doc_author.dart';
-import 'package:epubx/src/schema/navigation/epub_navigation_doc_title.dart';
-import 'package:epubx/src/schema/navigation/epub_navigation_head.dart';
-import 'package:epubx/src/schema/navigation/epub_navigation_head_meta.dart';
-import 'package:epubx/src/schema/navigation/epub_navigation_label.dart';
-import 'package:epubx/src/schema/navigation/epub_navigation_point.dart';
-import 'package:epubx/src/schema/navigation/epub_navigation_target.dart';
-import 'package:epubx/src/schema/opf/epub_guide.dart';
-import 'package:epubx/src/schema/opf/epub_guide_reference.dart';
-import 'package:epubx/src/schema/opf/epub_manifest.dart';
-import 'package:epubx/src/schema/opf/epub_manifest_item.dart';
-import 'package:epubx/src/schema/opf/epub_metadata.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_contributor.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_creator.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_date.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_identifier.dart';
-import 'package:epubx/src/schema/opf/epub_metadata_meta.dart';
-import 'package:epubx/src/schema/opf/epub_spine.dart';
-import 'package:epubx/src/schema/opf/epub_spine_item_ref.dart';
-import 'package:epubx/src/schema/opf/epub_version.dart';
+import 'package:epubx_kuebiko/epubx_kuebiko.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_metadata.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_doc_author.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_doc_title.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_head.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_head_meta.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_label.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_point.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_target.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_guide.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_guide_reference.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_manifest.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_manifest_item.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_contributor.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_creator.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_date.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_identifier.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_metadata_meta.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_spine.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_spine_item_ref.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_version.dart';
 
 class RandomString {
   final Random rng;
@@ -46,7 +46,7 @@ class RandomString {
   /// Generates a random string of [length] with characters
   /// between ascii [from] to [to].
   /// Defaults to characters of ascii '!' to '~'.
-  String randomString(int length, {int from: ASCII_START, int to: ASCII_END}) {
+  String randomString(int length, {int from = ASCII_START, int to = ASCII_END}) {
     return new String.fromCharCodes(
         new List.generate(length, (index) => randomBetween(from, to)));
   }
@@ -77,7 +77,7 @@ class RandomString {
 
   /// Merge [a] with [b] and scramble characters.
   String randomMerge(String a, String b) {
-    List<int> mergedCodeUnits = new List.from("$a$b".codeUnits);
+    List<int> mergedCodeUnits = List.from("$a$b".codeUnits);
     mergedCodeUnits.shuffle(rng);
     return new String.fromCharCodes(mergedCodeUnits);
   }
@@ -85,11 +85,11 @@ class RandomString {
 
 class RandomDataGenerator {
   final Random rng;
-  RandomString _randomString;
+  late RandomString _randomString;
   final int _length;
 
   RandomDataGenerator(this.rng, this._length) {
-    _randomString = new RandomString(rng);
+    _randomString = RandomString(rng);
   }
 
   String randomString() {
@@ -105,7 +105,7 @@ class RandomDataGenerator {
       ..Class = randomString()
       ..ChildNavigationPoints = depth > 0
           ? [randomEpubNavigationPoint(depth - 1)]
-          : new List<EpubNavigationPoint>();
+          : [];
   }
 
   EpubNavigationContent randomEpubNavigationContent() {
