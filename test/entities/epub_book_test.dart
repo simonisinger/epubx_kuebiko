@@ -1,7 +1,7 @@
 library epubreadertest;
 
-import 'package:epubx/epub.dart';
-import 'package:epubx/src/entities/epub_schema.dart';
+import 'package:epubx_kuebiko/epubx_kuebiko.dart';
+import 'package:epubx_kuebiko/src/entities/epub_schema.dart';
 import 'package:test/test.dart';
 
 main() async {
@@ -11,11 +11,11 @@ main() async {
     ..AuthorList = ["orthros"]
     ..Chapters = [new EpubChapter()]
     ..Content = new EpubContent()
-    ..CoverImage = Image(100, 100)
+    ..CoverImage = Image(width: 100, height: 100)
     ..Schema = new EpubSchema()
     ..Title = "A Dissertation on Epubs";
 
-  EpubBook testBook;
+  late EpubBook testBook;
   setUp(() async {
     testBook = new EpubBook();
     testBook
@@ -23,12 +23,9 @@ main() async {
       ..AuthorList = ["orthros"]
       ..Chapters = [new EpubChapter()]
       ..Content = new EpubContent()
-      ..CoverImage = Image(100, 100)
+      ..CoverImage = Image(width: 100, height: 100)
       ..Schema = new EpubSchema()
       ..Title = "A Dissertation on Epubs";
-  });
-  tearDown(() async {
-    testBook = null;
   });
   group("EpubBook", () {
     group(".equals", () {
@@ -45,7 +42,7 @@ main() async {
           ..FileName = "orthros.txt";
 
         EpubContent content = new EpubContent();
-        content.AllFiles["hello"] = file;
+        content.AllFiles!["hello"] = file;
         testBook.Content = content;
 
         expect(testBook, isNot(reference));
@@ -71,7 +68,7 @@ main() async {
       });
 
       test("is false when CoverImage changes", () async {
-        testBook.CoverImage = new Image(200, 200);
+        testBook.CoverImage = new Image(width: 200, height: 200);
         expect(testBook, isNot(reference));
       });
 
@@ -102,7 +99,7 @@ main() async {
           ..FileName = "orthros.txt";
 
         EpubContent content = new EpubContent();
-        content.AllFiles["hello"] = file;
+        content.AllFiles!["hello"] = file;
         testBook.Content = content;
 
         expect(testBook.hashCode, isNot(reference.hashCode));
@@ -128,7 +125,7 @@ main() async {
       });
 
       test("is false when CoverImage changes", () async {
-        testBook.CoverImage = new Image(200, 200);
+        testBook.CoverImage = new Image(width: 200, height: 200);
         expect(testBook.hashCode, isNot(reference.hashCode));
       });
 

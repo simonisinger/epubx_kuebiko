@@ -2,7 +2,7 @@ library epubreadertest;
 
 import 'dart:math';
 
-import 'package:epubx/src/schema/opf/epub_spine_item_ref.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_spine_item_ref.dart';
 import 'package:test/test.dart';
 
 import '../../random_data_generator.dart';
@@ -15,14 +15,11 @@ main() async {
     ..IsLinear = true
     ..IdRef = randomString.randomAlpha(length);
 
-  EpubSpineItemRef testSpineItemRef;
+  late EpubSpineItemRef testSpineItemRef;
   setUp(() async {
     testSpineItemRef = new EpubSpineItemRef()
       ..IsLinear = reference.IsLinear
       ..IdRef = reference.IdRef;
-  });
-  tearDown(() async {
-    testSpineItemRef = null;
   });
 
   group("EpubSpineItemRef", () {
@@ -31,7 +28,7 @@ main() async {
         expect(testSpineItemRef, equals(reference));
       });
       test("is false when IsLinear changes", () async {
-        testSpineItemRef.IsLinear = !testSpineItemRef.IsLinear;
+        testSpineItemRef.IsLinear = !(testSpineItemRef.IsLinear!);
         expect(testSpineItemRef, isNot(reference));
       });
       test("is false when IdRef changes", () async {
@@ -45,7 +42,7 @@ main() async {
         expect(testSpineItemRef.hashCode, equals(reference.hashCode));
       });
       test("is false when IsLinear changes", () async {
-        testSpineItemRef.IsLinear = !testSpineItemRef.IsLinear;
+        testSpineItemRef.IsLinear = !(testSpineItemRef.IsLinear!);
         expect(testSpineItemRef.hashCode, isNot(reference.hashCode));
       });
       test("is false when IdRef changes", () async {

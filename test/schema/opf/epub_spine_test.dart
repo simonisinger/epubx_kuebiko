@@ -2,8 +2,8 @@ library epubreadertest;
 
 import 'dart:math';
 
-import 'package:epubx/src/schema/opf/epub_spine.dart';
-import 'package:epubx/src/schema/opf/epub_spine_item_ref.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_spine.dart';
+import 'package:epubx_kuebiko/src/schema/opf/epub_spine_item_ref.dart';
 import 'package:test/test.dart';
 
 import '../../random_data_generator.dart';
@@ -20,14 +20,11 @@ main() async {
     ]
     ..TableOfContents = randomString.randomAlpha(length);
 
-  EpubSpine testSpine;
+  late EpubSpine testSpine;
   setUp(() async {
     testSpine = new EpubSpine()
-      ..Items = List.from(reference.Items)
+      ..Items = List.from(reference.Items!)
       ..TableOfContents = reference.TableOfContents;
-  });
-  tearDown(() async {
-    testSpine = null;
   });
 
   group("EpubSpine", () {

@@ -2,7 +2,7 @@ library epubreadertest;
 
 import 'dart:math';
 
-import 'package:epubx/src/schema/navigation/epub_navigation_target.dart';
+import 'package:epubx_kuebiko/src/schema/navigation/epub_navigation_target.dart';
 import 'package:test/test.dart';
 
 import '../../random_data_generator.dart';
@@ -13,18 +13,15 @@ main() async {
 
   final EpubNavigationTarget reference = generator.randomEpubNavigationTarget();
 
-  EpubNavigationTarget testNavigationTarget;
+  late EpubNavigationTarget testNavigationTarget;
   setUp(() async {
     testNavigationTarget = new EpubNavigationTarget()
       ..Class = reference.Class
       ..Content = reference.Content
       ..Id = reference.Id
-      ..NavigationLabels = List.from(reference.NavigationLabels)
+      ..NavigationLabels = List.from(reference.NavigationLabels!)
       ..PlayOrder = reference.PlayOrder
       ..Value = reference.Value;
-  });
-  tearDown(() async {
-    testNavigationTarget = null;
   });
   group("EpubNavigationTarget", () {
     group(".equals", () {

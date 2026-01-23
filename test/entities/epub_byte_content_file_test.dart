@@ -1,6 +1,6 @@
 library epubreadertest;
 
-import 'package:epubx/epub.dart';
+import 'package:epubx_kuebiko/epubx_kuebiko.dart';
 import 'package:test/test.dart';
 
 main() async {
@@ -11,7 +11,7 @@ main() async {
     ..ContentType = EpubContentType.OTHER
     ..FileName = "orthrosFile";
 
-  EpubByteContentFile testFile;
+  late EpubByteContentFile testFile;
 
   setUp(() async {
     testFile = new EpubByteContentFile();
@@ -22,9 +22,6 @@ main() async {
       ..FileName = "orthrosFile";
   });
 
-  tearDown(() async {
-    testFile = null;
-  });
 
   group("EpubByteContentFile", () {
     test(".equals is true for equivalent objects", () async {

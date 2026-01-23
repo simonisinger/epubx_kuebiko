@@ -1,10 +1,10 @@
 library epubreadertest;
 
 import 'package:archive/archive.dart';
-import 'package:epubx/epub.dart';
-import 'package:epubx/src/entities/epub_schema.dart';
-import 'package:epubx/src/ref_entities/epub_content_ref.dart';
-import 'package:epubx/src/ref_entities/epub_text_content_file_ref.dart';
+import 'package:epubx_kuebiko/epubx_kuebiko.dart';
+import 'package:epubx_kuebiko/src/entities/epub_schema.dart';
+import 'package:epubx_kuebiko/src/ref_entities/epub_content_ref.dart';
+import 'package:epubx_kuebiko/src/ref_entities/epub_text_content_file_ref.dart';
 import 'package:test/test.dart';
 
 main() async {
@@ -16,7 +16,7 @@ main() async {
     ..Schema = new EpubSchema()
     ..Title = "A Dissertation on Epubs";
 
-  EpubBookRef testBookRef;
+  late EpubBookRef testBookRef;
   setUp(() async {
     testBookRef = new EpubBookRef(arch);
     testBookRef
@@ -24,9 +24,6 @@ main() async {
       ..AuthorList = ["orthros"]
       ..Schema = new EpubSchema()
       ..Title = "A Dissertation on Epubs";
-  });
-  tearDown(() async {
-    testBookRef = null;
   });
   group("EpubBookRef", () {
     group(".equals", () {
@@ -42,7 +39,7 @@ main() async {
           ..FileName = "orthros.txt";
 
         EpubContentRef content = new EpubContentRef();
-        content.AllFiles["hello"] = file;
+        content.AllFiles!["hello"] = file;
 
         testBookRef.Content = content;
 
@@ -85,7 +82,7 @@ main() async {
           ..FileName = "orthros.txt";
 
         EpubContentRef content = new EpubContentRef();
-        content.AllFiles["hello"] = file;
+        content.AllFiles!["hello"] = file;
 
         testBookRef.Content = content;
 
